@@ -21,3 +21,40 @@ Settings::Settings(QObject* parent)
     : QSettings(parent)
 {
 }
+
+bool Settings::watchInBrowser()
+{
+    auto val = value("watchInBrowser", "true");
+    return val.toBool();
+}
+
+void Settings::setWatchInBrowser(bool browser)
+{
+    if (watchInBrowser() != browser)
+    {
+        setValue("watchInBrowser", browser);
+
+        emit watchInBrowserChanged();
+    }
+}
+
+QString Settings::cmdOnWatch()
+{
+    auto val = value("cmdOnWatch", "mpv %1");
+    return val.toString();
+}
+
+QString Settings::cmdOnWatchArg(const QString& arg)
+{
+    return cmdOnWatch().arg(arg);
+}
+
+void Settings::setCmdOnWatch(const QString& cmd)
+{
+    if (cmdOnWatch() != cmd)
+    {
+        setValue("cmdOnWatch", cmd);
+
+        emit cmdOnWatchChanged();
+    }
+}

@@ -16,7 +16,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import QtQuick 2.1
-import QtQuick.Controls 1.4 as QQC
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
@@ -34,8 +33,6 @@ Item {
         id: client
 
         onSearchChannelFinishedJS: {
-            console.log("Search finished", pattern, results, results.length)
-
             for(var i=0;i<results.length;i++) {
                 console.log(results[i].id, results[i].displayName)
             }

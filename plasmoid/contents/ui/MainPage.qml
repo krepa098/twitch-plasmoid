@@ -16,13 +16,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import QtQuick 2.1
-import QtQuick.Controls 1.4 as QQC
 import QtQuick.Layouts 1.3
 
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.private.twitchplasmoid 1.0 as Twitch
 
 PlasmaComponents.Page {
     property bool showSearch: false
@@ -35,7 +33,20 @@ PlasmaComponents.Page {
         ColumnLayout {
             anchors.fill: parent
             
-            PlasmaExtras.Title { text: "Twitch" }
+            RowLayout {
+                PlasmaExtras.Title { text: "Twitch" }
+                Item { Layout.fillWidth: true }
+                PlasmaComponents.ToolButton {
+                    id: settingsButton
+                    iconName: "settings"
+                    flat: true
+
+                    onClicked: {
+                        pageStack.push(Qt.createComponent("Settings.qml"))
+                    }
+                }
+            }
+            
 
             RowLayout {
                 Layout.fillWidth: true
@@ -52,7 +63,7 @@ PlasmaComponents.Page {
 
                 PlasmaComponents.TextField {
                     id: searchBox
-                    placeholderText: "Search for a new channel"
+                    placeholderText: qsTr("Search for a new channel")
                     Layout.fillWidth: true
                     
                     onTextChanged: {
@@ -190,7 +201,14 @@ PlasmaComponents.Page {
 
                             MouseArea {
                                 anchors.fill: parent
-                                onClicked: client.exec("mpv " + url)//Qt.openUrlExternally(url)
+                                onClicked: {
+                                    // watch channel
+                                    if (settings.watchInBrowser) {
+                                        Qt.openUrlExternally(url)
+                                    } else {
+                                        client.exec(settings.cmdOnWatchArg(url))
+                                    }
+                                 }
                                 cursorShape: Qt.PointingHandCursor
                                 hoverEnabled: true
                                 onEntered: {
