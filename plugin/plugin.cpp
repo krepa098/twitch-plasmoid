@@ -24,6 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 void TwitchPlasmoidPlugin::registerTypes(const char* uri)
 {
+    Q_UNUSED(uri)
+
     qmlRegisterType<Twitch::ChannelModel>("org.kde.private.twitchplasmoid", 1, 0, "ChannelModel");
     qmlRegisterType<Twitch::Client>("org.kde.private.twitchplasmoid", 1, 0, "Client");
     qmlRegisterType<Settings>("org.kde.private.twitchplasmoid", 1, 0, "Settings");

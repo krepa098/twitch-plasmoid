@@ -1,8 +1,8 @@
 # Maintainer: krepa098 <krepa098@gmail.com>
 
 _pkgname=twitch-plasmoid
-pkgname=${_pkgname}-git
-pkgver=v0.1.r1.ge58f3f3
+pkgname=$_pkgname-git
+pkgver=v0.1.r0.g8484cb0
 pkgrel=1
 pkgdesc="A Twitch plasmoid for KDE"
 arch=("i686" "x86_64")
@@ -15,22 +15,22 @@ source=("$_pkgname::git+$url.git#branch=master")
 md5sums=("SKIP")
 
 pkgver() {
-  cd "${_pkgname}"
-  git describe --long | sed "s/\([^-]*-g\)/r\1/;s/-/./g"
+  cd "$_pkgname"
+  git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-  cd "${_pkgname}/build"
+  cd "$_pkgname/build"
   cmake .. -DCMAKE_INSTALL_PREFIX="/usr"
   cmake --build . --config Release
 }
 
 prepare() {
-  cd "${_pkgname}"
+  cd "$_pkgname"
   mkdir -p build
 }
 
 package() {
-  cd "${_pkgname}/build"
-  make DESTDIR="${pkgdir}/" install
+  cd "$_pkgname/build"
+  make DESTDIR="$pkgdir/" install
 }
