@@ -1,0 +1,9 @@
+[Global]
+IconName=
+Comment=Twitch Plasmoid
+
+[Event/TwitchNowStreaming]
+Name=Twitch Now Streaming
+Comment=A streamer is now streaming
+Icon=
+Action=Popup
