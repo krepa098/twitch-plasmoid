@@ -203,7 +203,7 @@ PlasmaComponents.Page {
                                 anchors.fill: parent
                                 onClicked: {
                                     // watch channel
-                                    if (settings.watchInBrowser) {
+                                    if (settings.watchInBrowser || !live) {
                                         Qt.openUrlExternally(url)
                                     } else {
                                         client.exec(settings.cmdOnWatchArg(url))
