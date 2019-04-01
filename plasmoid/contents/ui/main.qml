@@ -84,7 +84,8 @@ Item {
             }
             
             Rectangle {
-                color: theme.textColor
+                color: transparent
+                border.color: theme.textColor
                 implicitWidth: liveChannelLabel.implicitWidth + 6
                 implicitHeight: Math.min(tray.height, liveChannelLabel.implicitHeight + 6)
                 radius: 4
@@ -94,7 +95,7 @@ Item {
                     id: liveChannelLabel
                     anchors.centerIn: parent
                     text: client.model.liveChannelCount 
-                    color: theme.backgroundColor
+                    color: theme.textColor
                 }
             }
         }
