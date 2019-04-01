@@ -84,7 +84,7 @@ Item {
             }
             
             Rectangle {
-                color: transparent
+                color: "transparent"
                 border.color: theme.textColor
                 implicitWidth: liveChannelLabel.implicitWidth + 6
                 implicitHeight: Math.min(tray.height, liveChannelLabel.implicitHeight + 6)

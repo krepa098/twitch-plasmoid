@@ -2,7 +2,7 @@
 
 _pkgname=twitch-plasmoid
 pkgname=$_pkgname-git
-pkgver=v0.2.r2.g9c3e590
+pkgver=v0.2.r3.g6f692a2
 pkgrel=1
 pkgdesc="A Twitch plasmoid for KDE"
 arch=("i686" "x86_64")
